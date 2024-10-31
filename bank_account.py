@@ -27,7 +27,7 @@ class AccountDB:
             remove_account = self.account_database.pop(index)
             print(f"Account {remove_account} has been deleted.")
         else:
-            print(f"No account found with an account number {acc}")
+            print(f"No account found with an account number {account_num}")
     
     def __str__(self):
         s = ''
