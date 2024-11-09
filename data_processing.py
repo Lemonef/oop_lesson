@@ -62,3 +62,22 @@ countries_table = Table("Countries", countries)
 db = TableDB()
 db.insert(cities_table)
 db.insert(countries_table)
+
+
+# Test Case 1: Calculate average temperature for all cities in Italy
+italy_cities = cities_table.filter(lambda x: x['country'] == 'Italy')
+italy_avg_temp = cities_table.aggregate('temperature', lambda temps: sum(temps) / len(temps), italy_cities)
+print("The average temperature for all the cities in Italy:", italy_avg_temp)
+
+# Test Case 2: Calculate average temperature for all cities in Sweden
+sweden_cities = cities_table.filter(lambda x: x['country'] == 'Sweden')
+sweden_avg_temp = cities_table.aggregate('temperature', lambda temps: sum(temps) / len(temps), sweden_cities)
+print("The average temperature for all the cities in Sweden:", sweden_avg_temp)
+
+# Test Case 3: Calculate min temperature in Italy
+italy_min_temp = cities_table.aggregate('temperature', min, italy_cities)
+print("The min temperature for all the cities in Italy:", italy_min_temp)
+
+# Test Case 4: Calculate max temperature in Sweden
+sweden_max_temp = cities_table.aggregate('temperature', max, sweden_cities)
+print("The max temperature for all the cities in Sweden:", sweden_max_temp)
